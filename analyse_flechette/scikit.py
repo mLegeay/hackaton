@@ -69,7 +69,7 @@ class FlechetteSciKit(object):
         """
         return ssim(self._image_a, self._video.get_data(image_id), multichannel=True)
 
-    def diff_n(self, image_id, seuil=200):
+    def diff_n(self, image_id, imshow=False):
 
         (score, diff) = ssim(
             color.rgb2gray(img_as_float(self._image_a)),
@@ -79,9 +79,12 @@ class FlechetteSciKit(object):
         ar_diff = (diff * 255).astype("uint8")
 
         thresh = cv2.threshold(ar_diff, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
-        cv2.imshow("tresh", thresh)
-        cv2.waitKey(0)
-        return ar_diff
+
+        if imshow is True:
+            cv2.imshow("tresh", thresh)
+            cv2.waitKey(0)
+
+        return thresh
 
     def evolution_ssim(self):
         r = list()
