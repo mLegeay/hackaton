@@ -1,4 +1,5 @@
-from analyse_flechette import FlechetteSciKit
+from analyse_flechette import FlechetteSciKit, TreshAnalyse
+from pprint import pprint
 
 # Couleur Rouge = x3
 # Couleur Vert = x2
@@ -27,10 +28,22 @@ if __name__ == '__main__':
     print("Affiche les coord des cases ROUGES")
     print(kk.get_cases_rouges())
 
+    # kk.cases_rouges_plot()
+
     # Affiche les différences notables entre l'image 1 et image 50
     print("Affiche les différences notables entre l'image 1 et image 50")
-    tresh = kk.diff_n(50)
-    print(type(tresh))
+    tresh = kk.diff_n(50, False)
+
+    # print(type(tresh))
+    # print(tresh.tolist())
+
+    # On récupère les flechettes présentes sur l'image
+    flechettes = TreshAnalyse.get_flechettes(tresh)
+
+    for flechette, i in zip(flechettes, range(len(flechettes))):
+        print('#{0} {1}'.format(i, str(flechette)))
+
+    # Maintenant, vous pouvez trouver la tête de la flechette sachant l'orientation de la caméra.
 
     # Le résultat tresh est au format numpy.ndarray
     # mathieu.legeay72360@gmail.com
