@@ -5,6 +5,9 @@ function calcul_point($couleur, $case){
         case("rouge"):
             return $case * 3;
             break;
+        case("vert2"):
+            return $case * 3;
+            break;
         case("vert"):
             return $case * 2;
             break;
