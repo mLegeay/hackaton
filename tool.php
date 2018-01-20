@@ -26,6 +26,5 @@ function envoie_donnée_equipe($equipe, $pass){
     curl_exec($ch);
     curl_close($ch);
 
-
 }
 
