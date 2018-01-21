@@ -2,7 +2,11 @@
 <!--<?php include("js/ihm_score.js") ?>-->
 <?php include ("../equipe.php");?>
 <?php include ("../index.php");
-$total = 0; ?>
+$total = 0;
+$equipe1 = new equipe();
+$equipe1->setEquipeName("NSFW");
+$equipe1->setEquipePass("");
+?>
 
 <!doctype html>
 <html lang="fr">
@@ -63,7 +67,7 @@ $total = 0; ?>
                             ?>
                             <tr>
                                 <td class="text text-center">
-                                    NSFW
+                                   <?= $equipe1->getEquipeName() ?>
                                 </td>
                                 <?php		// boucle pour chaque tour (de l'équipe)
                                 for ($j=1; $j<=$NbrCol; $j++)
@@ -93,8 +97,8 @@ $total = 0; ?>
             </div>
         </div>
         <script src="js/ihm_score.js"></script>
-        <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </body>
 </html>
 
@@ -110,19 +114,20 @@ $total = 0; ?>
 </form>
 
 <script>
-    $('#test').onclick(function(e){
-        $equipe1 = new equipe();
-        $equipe1->setEquipeName($("input[name=equipe]").val());
-        $equipe1->setEquipePass($("input[name=password]").val());
-        var_dump(envoie_donnee_equipe($equipe->getEquipeName(),$equipe->getEquipePass()));
-    });
-    $('#tour').onclick(function(){
-        $equipe1 = fin_de_tour($equipe1);
-       for($i=0; $1<10; $i++){
-           if($equipe1->score_tours[$i] != null ){
+    // $('#test').onclick(function(e){
+    //     $equipe11 = new equipe();
+    //     $equipe11->setEquipeName($("input[name=equipe]").val());
+    //     $equipe11->setEquipePass($("input[name=password]").val());
+    //     var_dump(envoie_donnee_equipe($equipe->getEquipeName(),$equipe->getEquipePass()));
+    // });
+    $('#tour').click(function(e){
+        console.log('pass');
+       <?php $equipe1 = fin_de_tour($equipe1);
+       for($i=0; $i<10; $i++){
+           if($equipe1 != null ){ ?>
                 $('col<?= $i ?>').html($equipe1->score_tours[$i]);
-                $total += score_tours[$i];
+        <?php   $total += score_tours[$i];
            }
-       }
+       } ?>
         });
 </script>

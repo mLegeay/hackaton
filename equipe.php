@@ -7,7 +7,7 @@ class equipe
 
     public function addScore($i, $score_tour){
 //        $this->score_tours->add($i,$score_tour);
-        array_push($score_tour, [$score_tour,$i]);
+        array_push($this->score_tours, $score_tour);
     }
 
     /**

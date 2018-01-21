@@ -71,7 +71,6 @@ $equipe->addScore($tour, $score_tour);
 
 //test d'envoi des score
 $outPut = envoi_donnee_score($equipe->getEquipeName(), $equipe->getEquipePass(), $score_tour);
-var_dump($outPut);
 
 
 if($tour <= 10){
