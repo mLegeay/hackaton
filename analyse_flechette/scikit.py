@@ -60,6 +60,25 @@ class FlechetteSciKit(object):
     def coeff_mse(self):
         return FlechetteSciKit.mse(self._image_a, self._image_b)
 
+    def get_color_at(self, x, y):
+        return img_as_float(self._image_a)[y][x].tolist()
+
+    def get_color_name_guess(self,x,y):
+        rgb = self.get_color_at(x,y)
+
+        if rgb[0] <= 0.2 and rgb[1] <= 0.2 and rgb[2] <= 0.2:
+            return 'BLACK'
+
+        if rgb[0] >= 0.4 and rgb[0] > rgb[1] and rgb[0] > rgb[2]:
+            return 'RED'
+        if rgb[1] >= 0.4 and rgb[1] > rgb[2] and rgb[1] > rgb[0]:
+            return 'GREEN'
+        # On imagine que..
+        if rgb[0] >= 0.3 and rgb[1] >= 0.3 and rgb[2] >= 0.3:
+            return 'WHITE'
+
+        return 'INCONNU'
+
     def coeff_ssim_n(self, image_id):
         """
         Récupère le coeff SSIM image début avec image choisie
@@ -116,7 +135,7 @@ class FlechetteSciKit(object):
         image = img_as_float(self._image_a)
 
         black_mask = color.rgb2gray(image) < 0.1
-        distance_red = color.rgb2gray(1 - np.abs(image - (0.99, 0, 0)))
+        distance_red = color.rgb2gray(1 - np.abs(image - (1, 0, 0)))
         distance_red[black_mask] = 0
 
         coords_red = self.get_cases_rouges()
@@ -150,22 +169,3 @@ class FlechetteSciKit(object):
 
         # show the images
         plt.show()
-
-    def get_color_at(self, x, y):
-        return img_as_float(self._image_a)[y][x].tolist()
-
-    def get_color_name_guess(self,x,y):
-        rgb = self.get_color_at(x,y)
-
-        print(rgb)
-
-        if rgb[0] <= 0.2 and rgb[1] <= 0.2 and rgb[2] <= 0.2:
-            return 'BLACK'
-
-        if rgb[0] > rgb[1] and rgb[0] > rgb[2]:
-            return 'RED'
-        if rgb[1] > rgb[2] and rgb[1] > rgb[0]:
-            return 'GREEN'
-        if rgb[2] > rgb[0] and rgb[2] > rgb[1]:
-            return 'BLUE'  # Faut trouver un moyen de nuancer ce cas !
-        return 'INCONNU'

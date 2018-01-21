@@ -17,6 +17,13 @@ class TreshAnalyse(object):
 
     @staticmethod
     def get_flechettes(tresh_2d, debug=False):
+        """
+
+        :param tresh_2d:
+        :param debug:
+        :return:
+        :rtype: list[Flechette]
+        """
 
         flechettes = list()
 
@@ -60,14 +67,8 @@ class TreshAnalyse(object):
             ax[1, 0].imshow(lowt, cmap='magma')
             ax[1, 0].set_title('Low threshold')
 
-            #ax[1, 1].imshow(hight + hyst, cmap='magma')
-            #ax[1, 1].set_title('Hysteresis threshold')
-
             for a in ax.ravel():
                 a.axis('off')
-
-            #print(edges)
-            #print(type(edges))
 
             plt.tight_layout()
 
