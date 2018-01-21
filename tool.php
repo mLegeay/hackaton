@@ -2,13 +2,13 @@
 define("SERVER_URL","http://192.168.10.1/server-score/api/");
 function calcul_point($couleur, $case){
     switch ($couleur) {
-        case("red"):
+        case("RED"):
             return $case * 3;
             break;
-        case("green2"):
+        case("GREEN2"):
             return $case * 3;
             break;
-        case("green"):
+        case("GREEN"):
             return $case * 2;
             break;
         default:
