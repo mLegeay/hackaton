@@ -1,5 +1,7 @@
 <!--<?php include("css/ihm_score.less") ?>-->
 <!--<?php include("js/ihm_score.js") ?>-->
+<?php include ("../equipe.php");?>
+<?php include ("../index.php"); ?>
 
 <!doctype html>
 <html lang="fr">
@@ -57,11 +59,18 @@
                         // pour afficher les libellés de chaque équipe
                         for ($i=1; $i<=$NbrLigne; $i++)
                         {
+
+
+                            // récupération du nom de l'équipe pour affichage
+                           // $nomEquipe = new equipe();
+                           // $recupEquipe = equipe.getEquipeName();
+
+
+
                             ?>
                             <tr>
                                 <td class="text text-center">
-                                    <?=
-                                        $i;
+                                    <?= 'echo';
                                     ?>
                                 </td>
                                 <?php		// boucle pour chaque tour (de l'équipe)
@@ -99,6 +108,27 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
+
+
+<form action="../equipe.php" method="post">
+
+        <p>
+            <label>Nom d'équipe : </label><input type="text" name="equipe" id="equipe" />
+            <label>Mot de passe : </label><input type="password" name="password" id="password" />
+        </p>
+
+    <button id="test">test</button>
+</form>
+
+<script>
+    $('#test').onclick(function(e){
+        $equipe= new equipe();
+        $equipe->setEquipeName($("input[name=equipe]").val());
+        $equipe->setEquipePass($("input[name=password]").val());
+        var_dump(envoie_donnee_equipe($equipe->getEquipeName(),$equipe->getEquipePass()));
+    });
+</script>
+
 
 
 
