@@ -1,7 +1,8 @@
 <!--<?php include("css/ihm_score.less") ?>-->
 <!--<?php include("js/ihm_score.js") ?>-->
 <?php include ("../equipe.php");?>
-<?php include ("../index.php"); ?>
+<?php include ("../index.php");
+$total = 0; ?>
 
 <!doctype html>
 <html lang="fr">
@@ -33,7 +34,6 @@
                         <?php
                         $NbrCol = 10; //le nombre de tours
                         // -------------------------------
-                        $scores = array ('18', '5', '14', '17', '28', '75', '158', '2', '1', '3');
 
                         // affichage de l'en-tête du tableau
                        ?>
@@ -78,9 +78,8 @@
                                 <?php	} // end for
                                 ?>
                                 <td class="text text-center">
-                                    <?=
-                                        count($scores);
-                                    ?>
+                                   <!-- total -->
+                                    <?= $total ?>
                                 </td>
                             </tr>
 
@@ -118,11 +117,12 @@
         var_dump(envoie_donnee_equipe($equipe->getEquipeName(),$equipe->getEquipePass()));
     });
     $('#tour').onclick(function(){
-       $equipe1 = fin_de_tour($equipe1);
+        $equipe1 = fin_de_tour($equipe1);
        for($i=0; $1<10; $i++){
            if($equipe1->score_tours[$i] != null ){
                 $('col<?= $i ?>').html($equipe1->score_tours[$i]);
+                $total += score_tours[$i];
            }
        }
-    });
+        });
 </script>
