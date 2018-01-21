@@ -4,7 +4,7 @@ require_once("tool.php");
 $tour = 1;
 
 function fin_de_tour(equipe $equipe){
-    $shell_cmd = escapeshellarg('python 24h-flechette/main.py');
+    $shell_cmd = escapeshellarg('python/data.json');
     $resultat = shell_exec($shell_cmd);
     $parsed_json = json_decode($resultat);
 
