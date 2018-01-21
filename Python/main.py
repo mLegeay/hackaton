@@ -213,10 +213,22 @@ POLYGONES_SECTEURS = [
                 ]
             )
         },
-    # polygones +={
-     #       'point': 25,
-       #     'polygone': polygone([526, 393], [539, 440], [529, 442], [537,406], [513, 390], [545, 423], [515, 434], [506, 419], [544, 430])
-      #  }
+        {
+            'point': 25,
+            'polygone': Polygone(
+                [
+                    (526, 393),
+                    (539, 440),
+                    (529, 442),
+                    (537,406),
+                    (513, 390),
+                    (545, 423),
+                    (515, 434),
+                    (506, 419),
+                    (544, 430)
+                ]
+            )
+        }
 ]
 
 FRM_ANALYSE_TARGET = 30  # Numéro de la FRM à analyser, la valeur 50 est arbitraire !
@@ -275,10 +287,15 @@ if __name__ == '__main__':
                 if secteur_polygone['polygone'].inside_polygon(flechette.x + flechette.width, flechette.y) is True:
 
                     print('La flechette est dans le secteur {0} ! '.format(secteur_id))
+                    if secteur_id == 21:
+                        secteur_id = 25
+                        if couleur_flechette_tete_guess == 'RED':
+                            couleur_flechette_tete_guess = 'GREEN'
+                        else:
+                            couleur_flechette_tete_guess = 'WHITE'
+                            
                     hit = {'case':secteur_id, 'couleur':couleur_flechette_tete_guess}
-                    print(hit)
                     listhit.append(hit)
-                    print(listhit)
                     # Votre logique pour le score
                     if couleur_flechette_tete_guess == 'BLACK':
                         pass
