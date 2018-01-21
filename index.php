@@ -18,13 +18,13 @@ $pass= "azerty";
 //$case3 = $parsed_json->{'hit_3'}->{'case'};
 //$couleur3 = $parsed_json->{'hit_3'}->{'couleur'};
 
-$couleur1 ="";
-$couleur2 ="";
-$couleur3 ="";
+$couleur1 ="rouge";
+$couleur2 ="vert2";
+$couleur3 ="vert";
 
-$case1="";
-$case2="";
-$case3="";
+$case1=18;
+$case2=1;
+$case3=20;
 
 $score1 = calcul_point($couleur1, $case1);
 $score2 = calcul_point($couleur2, $case2);
@@ -32,14 +32,16 @@ $score3 = calcul_point($couleur3, $case3);
 
 $score_tour = calcul_score_tour($score1, $score2, $score3);
 
-//test d'envoi des score
-$outPut = envoi_donnee_score($equipe, $pass, $score_tour);
-var_dump($outPut);
 
 //test création équipe
 $equipe->setEquipeName($equipe_name);
 $equipe->setEquipePass($pass);
 $equipe->addScore($tour, $score_tour);
+
+//test d'envoi des score
+$outPut = envoi_donnee_score($equipe->getEquipeName(), $equipe->getEquipePass(), $score_tour);
+var_dump($outPut);
+
 
 if($tour <= 10){
     $tour++;
