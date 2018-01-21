@@ -1,4 +1,5 @@
 from analyse_flechette import FlechetteSciKit, TreshAnalyse, FlechetteScene, Polygone
+import json
 
 # Retirer le commentaire pour pouvoir utiliser les requêtes HTTP avec Python
 # pip install requests
@@ -116,8 +117,8 @@ POLYGONES_SECTEURS = [
             'point': 11,
             'polygone': Polygone(
                 [
-                    (354, 337),
-                    (367, 402),
+                    (368, 401),
+                    (352, 336),
                     (504, 410),
                 ]
             )
@@ -126,9 +127,9 @@ POLYGONES_SECTEURS = [
             'point': 12,
             'polygone': Polygone(
                 [
-                    (369, 418),
-                    (354, 270),
-                    (506, 396),
+                    (369, 214),
+                    (402, 175),
+                    (508, 393),
                 ]
             )
         },
@@ -257,6 +258,7 @@ if __name__ == '__main__':
             print('Nombre flechette(s) DROITE FRM 50: {0}'.format(len(flechettes_droite)))
             print('Nombre flechette(s) HAUT FRM 50: {0}'.format(len(flechettes_haut)))
 
+        listhit = []
         # On effectue un traitement pour chaque flechette découverte sur la FRM n° 50
         for flechette, i in zip(flechettes, range(len(flechettes))):
 
@@ -273,7 +275,10 @@ if __name__ == '__main__':
                 if secteur_polygone['polygone'].inside_polygon(flechette.x + flechette.width, flechette.y) is True:
 
                     print('La flechette est dans le secteur {0} ! '.format(secteur_id))
-
+                    hit = {'case':secteur_id, 'couleur':couleur_flechette_tete_guess}
+                    print(hit)
+                    listhit.append(hit)
+                    print(listhit)
                     # Votre logique pour le score
                     if couleur_flechette_tete_guess == 'BLACK':
                         pass
@@ -283,10 +288,10 @@ if __name__ == '__main__':
                         pass
                     if couleur_flechette_tete_guess == 'WHITE':
                         pass
-
                     # Utilisez la fonction get ou post pour transmettre votre résultat à un serveur distant..
 
-        print()
+        with open('data.txt', 'w') as outfile:
+            json.dump(listhit, outfile)
 
     exit()
 

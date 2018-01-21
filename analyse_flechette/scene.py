@@ -46,3 +46,6 @@ class FlechetteScene(object):
             scenes.append(FlechetteScene(fichier.split('/')[-1]))
 
         return scenes
+
+    def connect_url(self):
+        return '192.168.10.2:554/'
