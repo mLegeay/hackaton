@@ -12,34 +12,213 @@ from analyse_flechette import FlechetteSciKit, TreshAnalyse, FlechetteScene, Pol
 
 
 POLYGONES_SECTEURS = [
-    # Secteur n°1
-    Polygone(
-        [
-            (515, 154),
-            (590, 190),
-            (570, 250),
-            (550, 330),
-            (520, 390),
-            (520, 320),
-            (517, 220)
-        ]
-    ),
-    # Secteur n°2
-    Polygone(
-        [
-            (650, 650),
-            (620, 600),
-            (570, 512),
-            (540, 440),
-            (588, 500),
-            (658, 580),
-            (697, 632)
-        ]
-    ),
-    # Secteur n° ...
+        {
+            'point': 1,
+            'polygone': Polygone(
+                [
+                    (516, 157),
+                    (584, 190),
+                    (526, 393),
+                ]
+            )
+        },
+        {
+            'point': 2,
+            'polygone': Polygone(
+                [
+                    (698, 632),
+                    (648, 650),
+                    (539, 440),
+                ]
+            )
+        },
+        {
+            'point': 3,
+            'polygone': Polygone(
+                [
+                    (589, 632),
+                    (536, 610),
+                    (529, 442),
+                ]
+            )
+        },
+        {
+            'point': 4,
+            'polygone': Polygone(
+                [
+                    (712, 340),
+                    (655, 255),
+                    (537, 406),
+                ]
+            )
+        },
+        {
+            'point': 5,
+            'polygone': Polygone(
+                [
+                    (452, 151),
+                    (403,174),
+                    (513, 390),
+                ]
+            )
+        },
+        {
+            'point': 6,
+            'polygone': Polygone(
+                [
+                    (752, 520),
+                    (748, 438),
+                    (545, 423),
+                ]
+            )
+        },
+        {
+            'point': 7,
+            'polygone': Polygone(
+                [
+                    (483, 581),
+                    (436, 531),
+                    (515, 434),
+                ]
+            )
+        },
+        {
+            'point': 8,
+            'polygone': Polygone(
+                [
+                    (369, 404),
+                    (396, 468),
+                    (506, 419),
+                ]
+            )
+        },
+        {
+            'point': 9,
+            'polygone': Polygone(
+                [
+                    (369, 219),
+                    (354, 271),
+                    (506, 396),
+                ]
+            )
+        },
+        {
+            'point': 10,
+            'polygone': Polygone(
+                [
+                    (735, 589),
+                    (754, 524),
+                    (544, 430),
+                ]
+            )
+        },
+        {
+            'point': 11,
+            'polygone': Polygone(
+                [
+                    (354, 337),
+                    (367, 402),
+                    (504, 410),
+                ]
+            )
+        },
+        {
+            'point': 12,
+            'polygone': Polygone(
+                [
+                    (369, 418),
+                    (354, 270),
+                    (506, 396),
+                ]
+            )
+        },
+        {
+            'point': 13,
+            'polygone': Polygone(
+                [
+                    (746, 434),
+                    (713, 344),
+                    (542, 414),
+                ]
+            )
+        },
+        {
+            'point': 14,
+            'polygone': Polygone(
+                [
+                    (354, 273),
+                    (353, 333),
+                    (504, 403),
+                ]
+            )
+        },
+        {
+            'point': 15,
+            'polygone': Polygone(
+                [
+                    (698, 631),
+                    (734, 590),
+                    (543, 437),
+                ]
+            )
+        },
+        {
+            'point': 16,
+            'polygone': Polygone(
+                [
+                    (396, 469),
+                    (434, 529),
+                    (509, 428),
+                ]
+            )
+        },
+        {
+            'point': 17,
+            'polygone': Polygone(
+                [
+                    (594, 645),
+                    (647, 650),
+                    (534, 442),
+                ]
+            )
+        },
+        {
+            'point': 18,
+            'polygone': Polygone(
+                [
+                    (653, 254),
+                    (596, 192),
+                    (531, 398),
+                ]
+            )
+        },
+        {
+            'point': 19,
+            'polygone': Polygone(
+                [
+                    (483, 581),
+                    (535, 619),
+                    (521, 440),
+                ]
+            )
+        },
+        {
+            'point': 20,
+            'polygone': Polygone(
+                [
+                    (513, 155),
+                    (454, 150),
+                    (518,390),
+                ]
+            )
+        },
+    # polygones +={
+     #       'point': 25,
+       #     'polygone': polygone([526, 393], [539, 440], [529, 442], [537,406], [513, 390], [545, 423], [515, 434], [506, 419], [544, 430])
+      #  }
 ]
 
-FRM_ANALYSE_TARGET = 50  # Numéro de la FRM à analyser, la valeur 50 est arbitraire !
+FRM_ANALYSE_TARGET = 30  # Numéro de la FRM à analyser, la valeur 50 est arbitraire !
 FRM_ANALYSE_DROITE_HAUT_ACTIF = True  # Toggle pour forcer l'analyse / découverte des flechettes sur la vue haute et droite. !Attention! CPU Utilisation Élevée
 
 if __name__ == '__main__':
@@ -90,9 +269,8 @@ if __name__ == '__main__':
             # On vérifie si la flechette ne serai pas présente dans un des polygones définis en constante, cf. en-têtes
             # Équivaut à POUR CHAQUE polygone FAIRE ... FIN
             for secteur_polygone, secteur_id in zip(POLYGONES_SECTEURS, range(1, len(POLYGONES_SECTEURS) + 1)):
-
                 # On vérifie si la coordonnée est dans le polygone courant du POUR CHAQUE
-                if secteur_polygone.inside_polygon(flechette.x + flechette.width, flechette.y) is True:
+                if secteur_polygone['polygone'].inside_polygon(flechette.x + flechette.width, flechette.y) is True:
 
                     print('La flechette est dans le secteur {0} ! '.format(secteur_id))
 
@@ -147,7 +325,6 @@ if __name__ == '__main__':
 
     # Maintenant, vous pouvez trouver la tête de la flechette sachant l'orientation de la caméra.
 
-    # Le résultat tresh est au format numpy.ndarray
     # mathieu.legeay72360@gmail.com
 
     exit()
