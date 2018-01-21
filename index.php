@@ -8,15 +8,23 @@ $equipe = new equipe();
 $equipe_name = "aylenTerabah";
 $pass= "azerty";
 
-$json = file_get_contents("data.json");
+//$json = file_get_contents("data.json");
+//
+//$parsed_json = json_decode($json);
+//$case1 = $parsed_json->{'hit_1'}->{'case'};
+//$couleur1 = $parsed_json->{'hit_1'}->{'couleur'};
+//$case2 = $parsed_json->{'hit_2'}->{'case'};
+//$couleur2 = $parsed_json->{'hit_2'}->{'couleur'};
+//$case3 = $parsed_json->{'hit_3'}->{'case'};
+//$couleur3 = $parsed_json->{'hit_3'}->{'couleur'};
 
-$parsed_json = json_decode($json);
-$case1 = $parsed_json->{'hit_1'}->{'case'};
-$couleur1 = $parsed_json->{'hit_1'}->{'couleur'};
-$case2 = $parsed_json->{'hit_2'}->{'case'};
-$couleur2 = $parsed_json->{'hit_2'}->{'couleur'};
-$case3 = $parsed_json->{'hit_3'}->{'case'};
-$couleur3 = $parsed_json->{'hit_3'}->{'couleur'};
+$couleur1 ="";
+$couleur2 ="";
+$couleur3 ="";
+
+$case1="";
+$case2="";
+$case3="";
 
 $score1 = calcul_point($couleur1, $case1);
 $score2 = calcul_point($couleur2, $case2);
